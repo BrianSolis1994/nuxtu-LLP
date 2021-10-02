@@ -17,7 +17,7 @@ int main()
     bool pareja_encontrada = false;
     long e, n, d, p=13, q=17;
     long c;
-    long producto, phi;
+    long product, phi;
 
     cout << "Welcome to the encrypt program, please enter the text to encrypt: \r\n";
     string text;
@@ -29,39 +29,36 @@ int main()
 
     while (pareja_encontrada == false)
     {
-        producto = p * q;
-        cout << p << "\t x \t" << q << " = " << p * q << "\r\n";
+        product = p * q;
         if ((p >= n) || (q >= n))
         {
-            cout << "No es posible factorizar el valor digitado"
-                 << "\r\n";
+            cout << "The value of n is invalid, closing the program."<< "\r\n";
+            exit(-1);
             break;
         }
-        else if ((producto != n) && (producto < n))
+        else if ((product != n) && (product < n))
         {
             q = get_prime_number_q();
         }
-        else if ((producto != n) && (producto > n))
+        else if ((product != n) && (product > n))
         {
             p = get_prime_number_p();
             q = reset_q();
         }
-        else if (producto == n)
+        else if (product == n)
         {
             pareja_encontrada = true;
         }
    }
-
-    //Hasta aqui todo bien
     phi=((p-1)*(q-1));
-    //cout << phi << "\r\n";
     if ((e > 1) && (e < phi) && (phi % e != 0))
     {
         d = (2 * phi + 1) / e;
     }
     else
     {
-
+        cout << "The value of e is invalid, closing the program."<< "\r\n";
+        exit(-1);
     }
     int ascii_to_table_value;
     for(int i = 0; i < text.size(); i++)
