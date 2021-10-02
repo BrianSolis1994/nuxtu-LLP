@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <cmath>
 
 using namespace std;
@@ -14,14 +14,19 @@ long reset_q();
 
 int main()
 {
-    bool pareja_encontrada= false;
+    bool pareja_encontrada = false;
     long e, n, d, p=13, q=17;
     long c;
     long producto, phi;
-    cout << "Welcome to the encrypt program \r\n"<< "Please enter the value of n: \r\n";
+
+    cout << "Welcome to the encrypt program, please enter the text to encrypt: \r\n";
+    string text;
+    getline(cin, text);
+    cout <<  "Now enter the value of n: \r\n";
     cin >> n;
-    cout << "Now enter the value of e: \r\n";
+    cout << "Finally enter the value of e: \r\n";
     cin >> e;
+
     while (pareja_encontrada == false)
     {
         producto = p * q;
@@ -49,19 +54,30 @@ int main()
 
     //Hasta aqui todo bien
     phi=((p-1)*(q-1));
-    cout << phi << "\r\n";
+    //cout << phi << "\r\n";
     if ((e > 1) && (e < phi) && (phi % e != 0))
     {
         d = (2 * phi + 1) / e;
-   }
-   else
-   {
+    }
+    else
+    {
 
-   }
-   cout << d << "\r\n";
-   c=pow(16,e);//Apartir de aquí crear el diccionario e incriptar 16 = P
-   c=c % n;
-   cout << c << "\r\n";
+    }
+    int ascii_to_table_value;
+    for(int i = 0; i < text.size(); i++)
+    {
+        if(text[i] == 32)
+        {
+            ascii_to_table_value = 27;
+        }
+        else
+        {
+            ascii_to_table_value = text[i] - 64;
+        }
+        c = pow(ascii_to_table_value, e);
+        c = c % n;
+        cout << c << "\r\n";
+    }
 }
 
 long get_prime_number_p()
