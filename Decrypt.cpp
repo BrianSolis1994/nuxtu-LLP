@@ -4,43 +4,88 @@
 
 using namespace std;
 
-int main(int argc, char **argv)
+class Decrypt
 {
-    mpz_t _c;
+private:
+    mpz_t c;
     unsigned long int d, n;
-    mpz_inits(_c, NULL);
+    int i = 0;
     unsigned char decrypt;
-    string text, numero;
+    string text;
+    string number;
+    string decode_text;
+    unsigned int buffer[100];
+
+public:
+    Decrypt(string _message, unsigned long int _n, unsigned long int _d);
+    void init();
+    string get_decode_text();
+    void reset_decode_text();
+};
+
+Decrypt::Decrypt(string _message, unsigned long int _n, unsigned long int _d)
+{
+    this->n = _n;
+    this->d = _d;
+    this->text = _message;
+}
+
+void Decrypt::init()
+{
+    mpz_inits(c, NULL);
+    stringstream input_stringstream(text);
+    unsigned int buffer[100];
+    i = 0;
+    while (getline(input_stringstream, number, ','))
+    {
+        buffer[i] = stoi(number);
+        i++;
+    }
+    i = 0;
+    while (buffer[i])
+    {
+        mpz_ui_pow_ui(c, buffer[i], d);
+        mpz_mod_ui(c, c, n);
+        if (mpz_get_ui(c) != 27)
+        {
+            decrypt = mpz_get_ui(c) + 64;
+            if ((decrypt > 64) && (decrypt < 91))
+            {
+                decode_text.append(1, decrypt);
+            }
+        }
+        else if (mpz_get_ui(c) == 27)
+        {
+            decrypt = 32;
+            decode_text.append(1, decrypt);
+        }
+        i++;
+    }
+}
+
+string Decrypt::get_decode_text()
+{
+    return this->decode_text;
+}
+
+void Decrypt::reset_decode_text()
+{
+    decode_text.clear();
+}
+
+int main()
+{
+    unsigned long int d, n;
+    string text;
     cout << "Welcome to the decrypt program, please enter the text to decrypt: \r\n";
     getline(cin, text);
     cout << "Now enter the private key value: \r\n";
     cin >> d;
     cout << "Finally, enter the value of n: \r\n";
     cin >> n;
-    stringstream input_stringstream(text);
-    unsigned int buffer[100];
-    int i = 0;
-    while (getline(input_stringstream, numero, ','))
-    {
-        buffer[i] = stoi(numero);
-        i++;
-    }
-    i = 0;
-    while (buffer[i])
-    {
-        mpz_ui_pow_ui(_c, buffer[i], d);
-        mpz_mod_ui(_c, _c, n);
-        if (mpz_get_ui(_c) != 27)
-        {
-            decrypt = mpz_get_ui(_c) + 64;
-        }
-        else
-        {
-            decrypt = 32;
-        }
-        if((decrypt > 64)&&(decrypt < 91)||(decrypt == 32))
-         cout<< (decrypt);
-        i++;
-    }
+    Decrypt message(text, n, d);
+    message.reset_decode_text();
+    message.init();
+    cout << message.get_decode_text();
     return 0;
 }
