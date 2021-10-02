@@ -76,7 +76,7 @@ int main()
         }
         c = pow(ascii_to_table_value, e);
         c = c % n;
-        cout << c << "\r\n";
+        cout << c << ",";
     }
 }
 
