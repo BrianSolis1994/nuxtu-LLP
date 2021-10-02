@@ -174,13 +174,16 @@ int main()
 {
     string text;
     unsigned long e, n;
-    cout << "Welcome to the encrypt program, please enter the text to encrypt: \r\n";
-    getline(cin, text);
-    cout << "Now enter the value of n: \r\n";
-    cin >> n;
-    cout << "Finally enter the value of e: \r\n";
-    cin >> e;
-    Encrypt message(text, n, e);
-    message.init_encrypt();
-    message.print_encrypt_code();
+    while(1)
+    {
+        cout << "\r\nWelcome to the encrypt program, please enter the text to encrypt: \r\n";
+        getline(cin, text);
+        cout << "Now enter the value of n: \r\n";
+        cin >> n;
+        cout << "Finally enter the value of e: \r\n";
+        cin >> e;
+        Encrypt message(text, n, e);
+        message.init_encrypt();
+        message.print_encrypt_code();
+    }
 }
