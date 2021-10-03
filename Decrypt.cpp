@@ -137,6 +137,7 @@ int main()
     //Init decrypt
     message.init();
     //print the decoded message
+    cout << "The decode message is: \r\n";
     cout << message.get_decode_text();
     return 0;
 }
