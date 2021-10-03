@@ -253,6 +253,7 @@ void Encrypt::init_encrypt()
 
 int main()
 {
+    //variables to assign to the constructor
     string text;
     unsigned long e, n;
     while (1)
@@ -263,8 +264,11 @@ int main()
         cin >> n;
         cout << "Finally enter the value of e: \r\n";
         cin >> e;
+        //Create a instance with the values get from user
         Encrypt message(text, n, e);
+        //Begin the encode the message
         message.init_encrypt();
+        //Print the encode message in the terminal
         message.print_encrypt_code();
     }
 }

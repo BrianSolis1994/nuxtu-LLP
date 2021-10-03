@@ -47,7 +47,7 @@ public:
     void reset_decode_text();
 };
 
-    /**
+/**
 	 * Constructor
 	 * @brief This function method create a obj
      * 
@@ -62,7 +62,7 @@ Decrypt::Decrypt(string _message, unsigned long int _n, unsigned long int _d)
     this->text = _message;
 }
 
-    /**
+/**
 	 * start decryption once the constructor method is called
 	 */
 void Decrypt::init()
@@ -98,7 +98,7 @@ void Decrypt::init()
     }
 }
 
-    /**
+/**
      * @brief: This method return the string with decode text
      * 
      * @return string
@@ -108,7 +108,7 @@ string Decrypt::get_decode_text()
     return this->decode_text;
 }
 
-    /**
+/**
      * @brief: This method clean the string with decode text
      * 
      * @return void
