@@ -17,12 +17,44 @@ private:
     unsigned int buffer[100];
 
 public:
+    /**
+	 * Constructor
+	 * @brief This function method create a obj
+     * 
+	 * @param _message	String with encode message, the string has numbers separate with commas.
+	 * @param _n	    Number semi-prime 
+	 * @param _d	    private key
+	 */
     Decrypt(string _message, unsigned long int _n, unsigned long int _d);
+
+    /**
+	 * start decryption once the constructor method is called
+	 */
     void init();
+
+    /**
+     * @brief: This method return the string with decode text
+     * 
+     * @return string
+     */
     string get_decode_text();
+
+    /**
+     * @brief: This method clean the string with decode text
+     * 
+     * @return void
+     */
     void reset_decode_text();
 };
 
+/**
+	 * Constructor
+	 * @brief This function method create a obj
+     * 
+	 * @param _message	String with encode message, the string has numbers separate with commas.
+	 * @param _n	    Number semi-prime 
+	 * @param _d	    private key
+	 */
 Decrypt::Decrypt(string _message, unsigned long int _n, unsigned long int _d)
 {
     this->n = _n;
@@ -30,6 +62,9 @@ Decrypt::Decrypt(string _message, unsigned long int _n, unsigned long int _d)
     this->text = _message;
 }
 
+/**
+	 * start decryption once the constructor method is called
+	 */
 void Decrypt::init()
 {
     mpz_inits(c, NULL);
@@ -63,11 +98,21 @@ void Decrypt::init()
     }
 }
 
+/**
+     * @brief: This method return the string with decode text
+     * 
+     * @return string
+     */
 string Decrypt::get_decode_text()
 {
     return this->decode_text;
 }
 
+    /**
+     * @brief: This method clean the string with decode text
+     * 
+     * @return void
+     */
 void Decrypt::reset_decode_text()
 {
     decode_text.clear();
