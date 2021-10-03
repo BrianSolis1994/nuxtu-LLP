@@ -269,6 +269,7 @@ int main()
         //Begin the encode the message
         message.init_encrypt();
         //Print the encode message in the terminal
+        cout << "The message encode is: \r\n";
         message.print_encrypt_code();
     }
 }
