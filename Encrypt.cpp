@@ -256,20 +256,17 @@ int main()
     //variables to assign to the constructor
     string text;
     unsigned long e, n;
-    while (1)
-    {
-        cout << "\r\nWelcome to the encrypt program, please enter the text to encrypt: \r\n";
-        getline(cin, text);
-        cout << "Now enter the value of n: \r\n";
-        cin >> n;
-        cout << "Finally enter the value of e: \r\n";
-        cin >> e;
-        //Create a instance with the values get from user
-        Encrypt message(text, n, e);
-        //Begin the encode the message
-        message.init_encrypt();
-        //Print the encode message in the terminal
-        cout << "The message encode is: \r\n";
-        message.print_encrypt_code();
-    }
+    cout << "\r\nWelcome to the encrypt program, please enter the text to encrypt: \r\n";
+    getline(cin, text);
+    cout << "Now enter the value of n: \r\n";
+    cin >> n;
+    cout << "Finally enter the value of e: \r\n";
+    cin >> e;
+    //Create a instance with the values get from user
+    Encrypt message(text, n, e);
+    //Begin the encode the message
+    message.init_encrypt();
+    //Print the encode message in the terminal
+    cout << "The message encode is: \r\n";
+    message.print_encrypt_code();
 }
