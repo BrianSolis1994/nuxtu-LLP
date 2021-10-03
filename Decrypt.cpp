@@ -47,7 +47,7 @@ public:
     void reset_decode_text();
 };
 
-/**
+    /**
 	 * Constructor
 	 * @brief This function method create a obj
      * 
@@ -62,7 +62,7 @@ Decrypt::Decrypt(string _message, unsigned long int _n, unsigned long int _d)
     this->text = _message;
 }
 
-/**
+    /**
 	 * start decryption once the constructor method is called
 	 */
 void Decrypt::init()
@@ -98,7 +98,7 @@ void Decrypt::init()
     }
 }
 
-/**
+    /**
      * @brief: This method return the string with decode text
      * 
      * @return string
@@ -120,6 +120,7 @@ void Decrypt::reset_decode_text()
 
 int main()
 {
+    //Variable to use in the constructor method
     unsigned long int d, n;
     string text;
     cout << "Welcome to the decrypt program, please enter the text to decrypt: \r\n";
@@ -128,9 +129,14 @@ int main()
     cin >> d;
     cout << "Finally, enter the value of n: \r\n";
     cin >> n;
+
+    //we call the constructor method
     Decrypt message(text, n, d);
+    //the decoded string is cleaned
     message.reset_decode_text();
+    //Init decrypt
     message.init();
+    //print the decoded message
     cout << message.get_decode_text();
     return 0;
 }
